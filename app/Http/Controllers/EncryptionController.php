@@ -12,8 +12,8 @@ class EncryptionController extends Controller
     public function action(Request $request)
     {
 //        return $request->type;
-        $secret = '12345678901234567890123456789012';
-        $iv = '0000000000000000';
+        $secret = '12345678901234567890123456789012';//cipher given by user
+        $iv = '0000000000000000';//Initialization Vector 16 bit
         $file = $request->file('file');
         $extension = $file->getClientOriginalExtension();//get file extension
         $name = $file->getClientOriginalName();

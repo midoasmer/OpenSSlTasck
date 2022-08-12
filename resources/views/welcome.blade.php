@@ -18,7 +18,7 @@
 <div class="card" style="width: 50%;margin-left: 25%;margin-top:5%;">
     <h5 class="card-header">Encrypt/Decrypt</h5>
     <div class="card-body">
-        <form id="actionForm" action="{{route('encrypt')}}" enctype="multipart/form-data" method="post">{{--action="{{route('encrypt')}}" enctype="multipart/form-data" method="post"--}}
+        <form id="actionForm" action="{{route('encrypt')}}" enctype="multipart/form-data" method="post">
             @csrf
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Select Action</label>
@@ -49,76 +49,23 @@
             </div>
             <button type="submit" class="btn btn-primary">Go</button>
         </form>
-{{--        <a id="downloadLink" style="display:none;" download></a>--}}
     </div>
 </div>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <script>
     function getFileData() {
-        var fileName = document.getElementById('file').files[0].name;
-        var fileSize = document.getElementById('file').files[0].size;
-        var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+        var fileName = document.getElementById('file').files[0].name;//get fail name
+        var fileSize = document.getElementById('file').files[0].size;//get file size
+        var ext = fileName.substring(fileName.lastIndexOf('.') + 1);//get file ext
+        //show file data to user
         document.getElementById('fileName').innerHTML = fileName;
-        document.getElementById('fileName').style.color = "red";
         document.getElementById('fileType').innerHTML = ext;
-        document.getElementById('fileType').style.color = "red";
         document.getElementById('fileSize').innerHTML = fileSize;
+        document.getElementById('fileType').style.color = "red";
         document.getElementById('fileSize').style.color = "red";
+        document.getElementById('fileName').style.color = "red";
     }
-
-    {{--$('#actionForm').submit(function (e) {--}}
-    {{--    e.preventDefault();--}}
-    {{--    var Route = '{{route('encrypt')}}';--}}
-    {{--    $.ajax({--}}
-    {{--        type: 'POST',--}}
-    {{--        url: Route,--}}
-    {{--        data: new FormData(this),--}}
-    {{--        processData: false,--}}
-    {{--        contentType: false,--}}
-    {{--        success: function (data, status) {--}}
-    {{--            console.log(data);--}}
-    {{--            // window.location.href = 'data:text/plain;charset=utf-8, ' + encodeURIComponent(data.path);--}}
-    {{--            // document.getElementById('my_file').src = 'data:text/plain;charset=utf-8, ' + encodeURIComponent(data.path);--}}
-    {{--            // download(data.path, data.name, data.ext)--}}
-    {{--            // var file = new Blob([data.path], {type: data.ext});--}}
-    {{--            // var a = document.createElement("a"),--}}
-    {{--            //     url = URL.createObjectURL(file);--}}
-    {{--            // a.href = url;--}}
-    {{--            // a.download = data.name;--}}
-    {{--            // document.body.appendChild(a);--}}
-    {{--            // a.click();--}}
-    {{--            // setTimeout(function() {--}}
-    {{--            //     document.body.removeChild(a);--}}
-    {{--            //     window.URL.revokeObjectURL(url);--}}
-    {{--            // }, 0);--}}
-    {{--            var element = document.createElement('a');--}}
-    {{--            element.setAttribute('href','data:text/plain;charset=utf-8, ' + encodeURIComponent(data));--}}
-    {{--            element.setAttribute('download', 'file.pdf');--}}
-    {{--            document.body.appendChild(element);--}}
-    {{--            element.click();--}}
-    {{--        },--}}
-    {{--    });--}}
-    {{--});--}}
-
-    // function download(data, filename, type) {
-    //     var file = new Blob([data], {type: type});
-    //     if (window.navigator.msSaveOrOpenBlob) // IE10+
-    //         window.navigator.msSaveOrOpenBlob(file, filename);
-    //     else { // Others
-    //         var a = document.createElement("a"),
-    //             url = URL.createObjectURL(file);
-    //         a.href = url;
-    //         a.download = filename;
-    //         document.body.appendChild(a);
-    //         a.click();
-    //         setTimeout(function() {
-    //             document.body.removeChild(a);
-    //             window.URL.revokeObjectURL(url);
-    //         }, 0);
-    //     }
-    // }
 </script>
 </body>
 </html>
